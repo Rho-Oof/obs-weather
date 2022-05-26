@@ -64,6 +64,7 @@ const run = async () => {
 	update()
   let status
 	let reconnectInterval
+	let interval	
 	obs.on('ConnectionOpened', async (data) => {
 		if (reconnectInterval) {
 			console.log('connected to obs')
@@ -71,7 +72,6 @@ const run = async () => {
 			reconnectInterval = undefined
 		}
 		status = await getSItems()
-		let interval	
 		if (status?.isVirtualCam) {
 			console.log('virtual cam already running, starting up')
 			interval = setInterval(update, 30 * 1000)
